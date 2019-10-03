@@ -1,0 +1,42 @@
+{
+  "version": 2,
+  "name": "GeoPins",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": { "distDir": "build" }
+    }
+  ],
+  "build": {
+    "env": {
+      "MONGO_URI": "mongodb+srv://yurikbv:tww010939@cluster0-u7onq.mongodb.net/test?retryWrites=true&w=majority",
+      "OAUTH_CLIENT_ID": "243746313174-rj1qve9elsgno4ef5mtdaroeupmpd2uk.apps.googleusercontent.com"
+    }
+  },
+  "env": {
+    "MONGO_URI": "mongodb+srv://yurikbv:tww010939@cluster0-u7onq.mongodb.net/test?retryWrites=true&w=majority",
+    "OAUTH_CLIENT_ID": "243746313174-rj1qve9elsgno4ef5mtdaroeupmpd2uk.apps.googleusercontent.com"
+  },
+  "routes": [
+    {
+      "src": "^/static/(.*)",
+      "headers": { "cache-control": "s-maxage=31536000,immutable" },
+      "dest": "/static/$1"
+    },
+    { "src": "^/favicon.ico", "dest": "/favicon.ico" },
+    { "src": "^/asset-manifest.json", "dest": "/asset-manifest.json" },
+    { "src": "^/manifest.json", "dest": "/manifest.json" },
+    { "src": "^/precache-manifest.(.*)", "dest": "/precache-manifest.$1" },
+    {
+      "src": "^/service-worker.js",
+      "headers": { "cache-control": "s-maxage=0" },
+      "dest": "/service-worker.js"
+    },
+    {
+      "src": "^/(.*)",
+      "headers": { "cache-control": "s-maxage=0" },
+      "dest": "/index.html"
+    }
+  ]
+}
